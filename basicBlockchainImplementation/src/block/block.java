@@ -12,12 +12,14 @@ public class block {
     private String data;
     private long timeStamp;
     private int nonce;
+    private transaction transactionData;
 
-    public block(String data, String previousHash, long timeStamp) {
-        this.data = data;
+    public block(transaction data, String previousHash, long timeStamp) {
+        this.data = data.getDataString();
         this.previousHash = previousHash;
         this.timeStamp = timeStamp;
         this.hash = calculateBlockHash();
+        this.transactionData = data;
     }
 
     public String calculateBlockHash() {
@@ -57,5 +59,9 @@ public class block {
 
     public void setData(String data) {
         this.data = data;
+    }
+
+    public String getData() {
+        return this.transactionData.getData();
     }
 }
